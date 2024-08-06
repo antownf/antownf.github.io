@@ -1,4 +1,4 @@
-##Wenjie Fu(付文杰)
+## Wenjie Fu(付文杰)
 # 这是我的一个pages
 
 ## 看看标题是怎么样的

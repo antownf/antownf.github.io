@@ -13,3 +13,5 @@ I really like using markdown.
 ###我要强调**你**。。
 我要加星*你*
 我要强调加星***你***
+
+> Cindy is very smart.

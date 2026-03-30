@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wenjie Fu（付文杰）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #2563a8;
+      --accent-hover: #1a4a80;
+      --text: #1a1a1a;
+      --muted: #555;
+      --light: #888;
+      --border: #e4e4e4;
+      --bg: #ffffff;
+      --tag-bg: #eef3fa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 400;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 54px;
+    }
+    .nav-name {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* LAYOUT */
+    .page-wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 72px 40px 100px;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 72px;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: sticky;
+      top: 74px;
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .avatar-wrap {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dde8f5 0%, #c8d8ee 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .avatar-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .avatar-placeholder span {
+      font-size: 0.68rem;
+      color: var(--accent);
+      opacity: 0.55;
+      letter-spacing: 0.08em;
+    }
+    .sidebar-name {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      line-height: 1.35;
+    }
+    .sidebar-title {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-top: 7px;
+    }
+    .divider { width: 32px; height: 1px; background: var(--border); }
+    .sidebar-links { display: flex; flex-direction: column; gap: 9px; }
+    .sidebar-links a {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .sidebar-links a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    /* MAIN */
+    main { min-width: 0; }
+    section { margin-bottom: 60px; }
+    section:last-child { margin-bottom: 0; }
+
+    h1.display {
+      font-family: 'Lora', serif;
+      font-size: 1.95rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .display-sub {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      font-size: 1.3rem;
+      color: var(--muted);
+    }
+    .role-badge {
+      display: inline-block;
+      margin: 14px 0 24px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 3px 12px;
+      border-radius: 20px;
+    }
+
+    p { margin-bottom: 14px; font-size: 0.96rem; }
+    p:last-child { margin-bottom: 0; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    strong { font-weight: 600; }
+
+    h2.section-title {
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* RESEARCH */
+    .research-grid { display: flex; flex-direction: column; gap: 14px; }
+    .research-item {
+      display: flex;
+      gap: 14px;
+      padding: 15px 18px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .research-item:hover {
+      border-color: #b8cee8;
+      box-shadow: 0 2px 12px rgba(37,99,168,0.07);
+    }
+    .research-num {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--accent);
+      min-width: 22px;
+      padding-top: 1px;
+    }
+    .research-title { font-weight: 600; font-size: 0.93rem; margin-bottom: 4px; }
+    .research-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    /* PUBLICATIONS */
+    .pub-year-group { margin-bottom: 30px; }
+    .pub-year-group:last-child { margin-bottom: 0; }
+    .pub-year-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--light);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .pub-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .pub-item:last-child { border-bottom: none; }
+    .pub-title { font-weight: 600; font-size: 0.93rem; margin-bottom: 4px; line-height: 1.4; }
+    .pub-authors { font-size: 0.85rem; color: var(--muted); margin-bottom: 3px; }
+    .pub-venue { font-size: 0.83rem; color: var(--light); font-style: italic; margin: 0; }
+    .pub-links { margin-top: 8px; display: flex; gap: 7px; flex-wrap: wrap; }
+    .pub-links a {
+      font-size: 0.77rem;
+      background: var(--tag-bg);
+      color: var(--accent);
+      padding: 2px 10px;
+      border-radius: 3px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .pub-links a:hover { background: #d8e6f7; text-decoration: none; }
+
+    /* CV */
+    .cv-table { width: 100%; border-collapse: collapse; }
+    .cv-table tr { border-bottom: 1px solid var(--border); }
+    .cv-table tr:last-child { border-bottom: none; }
+    .cv-table td { padding: 13px 0; vertical-align: top; font-size: 0.92rem; }
+    .cv-year { width: 110px; color: var(--light); font-size: 0.83rem; padding-right: 20px; white-space: nowrap; }
+    .cv-role { font-weight: 600; margin-bottom: 2px; }
+    .cv-org { color: var(--muted); font-size: 0.87rem; }
+    .cv-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+      padding: 9px 20px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .cv-download:hover { background: var(--accent-hover); text-decoration: none; color: #fff; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 20px; }
+      .page-wrapper { grid-template-columns: 1fr; gap: 40px; padding: 36px 20px 80px; }
+      .sidebar { position: static; flex-direction: row; flex-wrap: wrap; gap: 20px; }
+      .avatar-wrap { width: 110px; height: 110px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#">Wenjie Fu</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#cv">CV</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrapper">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="avatar-wrap">
+      <div class="avatar-placeholder">
+        <!-- 有照片时，删除这个 div，换成：
+             <img src="photo.jpg" alt="Wenjie Fu" style="width:100%;height:100%;object-fit:cover;border-radius:50%"> -->
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#2563a8" stroke-width="1.2" opacity="0.45">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <span>YOUR PHOTO</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="sidebar-name">Wenjie Fu<br>（付文杰）</div>
+      <!-- ✏️ 修改职位和单位 -->
+      <div class="sidebar-title">
+        PhD Student<br>
+        Dept. of Computer Science<br>
+        XX University
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="sidebar-links">
+      <!-- ✏️ 修改以下链接 -->
+      <a href="mailto:yourname@university.edu">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        Email
+      </a>
+      <a href="https://github.com/antownf" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <a href="https://scholar.google.com" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269z"/><path d="M12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+        Google Scholar
+      </a>
+      <a href="https://twitter.com/" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Twitter / X
+      </a>
+      <a href="cv.pdf" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        CV (PDF)
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h1 class="display">Wenjie Fu <span class="display-sub">（付文杰）</span></h1>
+      <div class="role-badge">PhD Student · XX University</div>
+
+      <!-- ✏️ 修改以下三段个人介绍 -->
+      <p>
+        Hello! My name is Wenjie Fu (付文杰). I am a PhD student at the
+        <a href="#">Department of Computer Science</a>, XX University.
+        My research focuses on <strong>your research area</strong> and
+        <strong>related topics</strong>, their interconnections, and practical implications.
+      </p>
+      <p>
+        My work uses [methods, e.g., machine learning, statistical modeling, experiments] to study
+        [what you study]. Currently I work on
+        <strong>1)</strong> [topic A],
+        <strong>2)</strong> [topic B], and
+        <strong>3)</strong> [topic C].
+      </p>
+      <p>
+        I received my bachelor's degree in [field] from <a href="#">[University]</a> in [Year].
+        I am advised by <a href="#">Prof. XX</a>.
+      </p>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <h2 class="section-title">Research</h2>
+      <div class="research-grid">
+
+        <!-- ✏️ 修改每个研究方向的标题和描述 -->
+        <div class="research-item">
+          <div class="research-num">1</div>
+          <div>
+            <div class="research-title">Research Direction One</div>
+            <p class="research-desc">
+              Describe the first topic here — what you study, why it matters, and the methods you use.
+            </p>
+          </div>
+        </div>
+
+        <div class="research-item">
+          <div class="research-num">2</div>
+          <div>
+            <div class="research-title">Research Direction Two</div>
+            <p class="research-desc">
+              Describe the second topic here — key questions, approaches, and expected outcomes.
+            </p>
+          </div>
+        </div>
+
+        <div class="research-item">
+          <div class="research-num">3</div>
+          <div>
+            <div class="research-title">Research Direction Three</div>
+            <p class="research-desc">
+              Describe the third topic here — including datasets, tools, or collaborators if relevant.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <h2 class="section-title">Publications</h2>
+
+      <!-- ✏️ 按年份分组，复制 pub-year-group 来添加更多年份 -->
+      <div class="pub-year-group">
+        <div class="pub-year-label">2024</div>
+
+        <div class="pub-item">
+          <div class="pub-title">Your Paper Title: A Study on Something Important</div>
+          <div class="pub-authors"><strong>Wenjie Fu</strong>, Coauthor A, Coauthor B</div>
+          <div class="pub-venue">Journal / Conference Name, 2024</div>
+          <div class="pub-links">
+            <a href="#">PDF</a>
+            <a href="#">Code</a>
+            <a href="#">DOI</a>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Another Paper Title on a Related Topic</div>
+          <div class="pub-authors">Coauthor A, <strong>Wenjie Fu</strong>, Coauthor C</div>
+          <div class="pub-venue">Workshop / Conference Name, 2024</div>
+          <div class="pub-links">
+            <a href="#">PDF</a>
+            <a href="#">Poster</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-year-group">
+        <div class="pub-year-label">2023</div>
+
+        <div class="pub-item">
+          <div class="pub-title">Earlier Work Title: Exploring Something Foundational</div>
+          <div class="pub-authors"><strong>Wenjie Fu</strong>, Coauthor D</div>
+          <div class="pub-venue">Journal of YY, 2023</div>
+          <div class="pub-links">
+            <a href="#">PDF</a>
+            <a href="#">DOI</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CV -->
+    <section id="cv">
+      <h2 class="section-title">CV</h2>
+
+      <!-- ✏️ 修改教育/工作经历 -->
+      <table class="cv-table">
+        <tr>
+          <td class="cv-year">2022 – present</td>
+          <td>
+            <div class="cv-role">Ph.D. in [Field]</div>
+            <div class="cv-org">XX University, City, Country</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="cv-year">2020 – 2022</td>
+          <td>
+            <div class="cv-role">Research Assistant / M.S. in [Field]</div>
+            <div class="cv-org">XX Institute / University</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="cv-year">2016 – 2020</td>
+          <td>
+            <div class="cv-role">B.S. in [Field]</div>
+            <div class="cv-org">[Undergraduate University], China</div>
+          </td>
+        </tr>
+      </table>
+
+      <a class="cv-download" href="cv.pdf" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Full CV (PDF)
+      </a>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
